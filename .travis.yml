@@ -11,5 +11,5 @@ jobs:
     - docker build -t $IMAGE_NAME .
     - docker tag $IMAGE_NAME:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/godway/$REPO_NAME:latest
     - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/godway/$REPO_NAME:latest
-    - aws ecs register-task-definition --family web --container-definitions [{\"name\":\"FirstTask\",\"image\":\"093742782188.dkr.ecr.us-east-2.amazonaws.com/godway/nginx:latest\",\"portMappings\":[{\"containerPort\": 80,\"hostPort\": 80}],\"cpu\":256,\"memory\":150}]
+    - aws ecs register-task-definition --cli-input-json file://task-definition.json
     - aws ecs update-service --cluster FirstCluster --service first-service --task-definition web
