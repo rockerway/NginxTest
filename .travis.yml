@@ -10,7 +10,7 @@ jobs:
     - eval $(aws ecr get-login --no-include-email)
     - docker build -t $IMAGE_NAME .
     - docker tag $IMAGE_NAME:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/godway/$REPO_NAME:latest
-    - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/godway/$REPO_NAME
+    - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/godway/$REPO_NAME:latest
   notifications:
     slack:
       on_pull_requests: true
